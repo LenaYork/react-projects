@@ -1,19 +1,10 @@
 import "./Circle.css";
 import React from "react";
 
-export class Circle extends React.Component {
+export function Circle(props) {
     
-
-    // handleClick = ()=> {
-    //     this.setState({
-    //         isActive: !this.state.isActive,
-    //     })
-    // }
-
-    render() {
-        const circleColor = (this.props.id === this.props.active) ? this.props.color : "grey";
+        const circleColor = (props.id === props.active) ? props.color : "grey";
         return(
-            <div className={`circle ${circleColor}`} onClick={()=>this.props.click(this.props.id)}></div>
+            <div className={`circle ${circleColor}`} onClick={()=> props.click(props.id)}></div>
         )
-    }
 }
