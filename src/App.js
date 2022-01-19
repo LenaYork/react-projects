@@ -1,33 +1,51 @@
 import React, { useState } from 'react';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      activeClass : "blue",
-      text : "На меня еще не нажали"
+function App () {
+    const [activeClass, setActiveClass] = useState("blue");
+    const [text, setText] = useState("На меня еще не нажали");
+
+    const handleClick = () => {
+      const newActiveClass = activeClass === "green" ? "blue" : "green";
+      const newText = text === "а вот теперь нажали" ? "На меня еще не нажали" : "а вот теперь нажали";
+      setActiveClass(newActiveClass);
+      setText(newText);
     }
-  }
 
-  handleClick = () => {
-    // alert("smth!");
-    const newActiveClass = this.state.activeClass === "green" ? "blue" : "green";
-    const newText = this.state.text === "а вот теперь нажали" ? "На меня еще не нажали" : "а вот теперь нажали";
-    this.setState({
-      activeClass: newActiveClass,
-      text: newText,
-    })
-  }
-
-  render() {
     return(
-      <button className={this.state.activeClass} onClick={this.handleClick}>
-        {this.state.text}
+      <button className={activeClass} onClick={handleClick}>
+        {text}
       </button>
-    )
-  }
+    ) 
 }
+
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       activeClass : "blue",
+//       text : "На меня еще не нажали"
+//     }
+//   }
+
+//   handleClick = () => {
+//     // alert("smth!");
+//     const newActiveClass = this.state.activeClass === "green" ? "blue" : "green";
+//     const newText = this.state.text === "а вот теперь нажали" ? "На меня еще не нажали" : "а вот теперь нажали";
+//     this.setState({
+//       activeClass: newActiveClass,
+//       text: newText,
+//     })
+//   }
+
+//   render() {
+//     return(
+//       <button className={this.state.activeClass} onClick={this.handleClick}>
+//         {this.state.text}
+//       </button>
+//     )
+//   }
+// }
 
 // // class App extends React.Component {
 // //   constructor(props) {
