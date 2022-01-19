@@ -1,25 +1,11 @@
-.App {
-  width: 50%;
-  height: 90%;
-  border-radius: 15px;
-  margin: 0 auto;
-  padding-bottom: 15px;
-  background-color: #b7e7d7;
+button:hover {
+  cursor: pointer;
 }
 
-.traffic-container {
-  border: 1px solid #4d4a4a;
-  border-radius: 15px;
-  width: 120px;
-  height: 350px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #dde8e9;
+.blue {
+  background-color: blue;
 }
 
-h1 {
-  text-align: center;
+.green {
+  background-color: green;
 }
