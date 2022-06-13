@@ -1,104 +1,102 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Button } from './components/Button/Button';
+import { Circle } from './components/Circle/Circle';
+
 
 function App () {
-    const [activeClass, setActiveClass] = useState("blue");
-    const [text, setText] = useState("На меня еще не нажали");
+    const CIRCLES = [
+        {
+            bgColor : "#004500",
+            innerText : "Йа кружок!",
+            id : "1"
+        },
+        {
+            bgColor : "#004500",
+            innerText : "И йа кружок!",
+            id : "2"
+        },
+        {
+            bgColor : "#004500",
+            innerText : "Я тож!",
+            id : "3"
+        },
+    ]
 
-    const handleClick = () => {
-      const newActiveClass = activeClass === "green" ? "blue" : "green";
-      const newText = text === "а вот теперь нажали" ? "На меня еще не нажали" : "а вот теперь нажали";
-      setActiveClass(newActiveClass);
-      setText(newText);
+    const [ circleArr, setCircleArr ] = useState([]);
+    const [ counter, setCounter ] = useState(0);
+ 
+    const addCircle = () => {
+        console.log("тыц");
+        if (circleArr.length > 0 ) {
+            let newArr = [...circleArr];
+            newArr.push({
+                bgColor : "#004500",
+                innerText : "новый!",
+                id : circleArr[circleArr.length-1].id+1
+            });
+            setCircleArr(newArr);
+        } else {
+            console.log("2");
+            setCircleArr([{
+                bgColor : "#004500",
+                innerText : "новый!",
+                id : 1
+            }]);
+        }
+    }
+
+    const deleteCircle = () => {
+        if (circleArr.length === 0 ) {
+            setCounter(counter+1);
+            if (counter === 3) {
+                alert("ибанько штоль? нечего ж удалять!");
+            }
+        }
+
+        let reducedArr = [...circleArr];
+        reducedArr.pop();
+        setCircleArr(reducedArr);
+    }
+
+    const clearCircles = () => {
+        setCircleArr([]);
     }
 
     return(
-      <button className={activeClass} onClick={handleClick}>
-        {text}
-      </button>
-    ) 
+        <div className='app'>
+            <h1>Рисуем кружочки по тыку</h1>
+            <div className="buttons-container">
+                <Button innerText="Добавить" onClick={addCircle}/>
+                <Button innerText="Удалить" onClick={deleteCircle}/>
+                <Button innerText="Очистить" onClick={clearCircles}/>
+            </div>
+            {
+                circleArr.map(elem => {
+                    return <Circle 
+                        bgColor={elem.bgColor}
+                        innerText={elem.innerText}
+                        key={elem.id}
+                    />
+                })
+        
+            }
+            {/* <Circle 
+                bgColor="#008000"
+                innerText="Йа кружок!"
+            />
+            <Circle 
+                bgColor="#008000"
+                innerText="И йа кружок!"
+            />
+            <Circle 
+                bgColor="#008000"
+                innerText="И я!"
+            /> */}
+            
+        </div>
+    
+    )
 }
-
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       activeClass : "blue",
-//       text : "На меня еще не нажали"
-//     }
-//   }
-
-//   handleClick = () => {
-//     // alert("smth!");
-//     const newActiveClass = this.state.activeClass === "green" ? "blue" : "green";
-//     const newText = this.state.text === "а вот теперь нажали" ? "На меня еще не нажали" : "а вот теперь нажали";
-//     this.setState({
-//       activeClass: newActiveClass,
-//       text: newText,
-//     })
-//   }
-
-//   render() {
-//     return(
-//       <button className={this.state.activeClass} onClick={this.handleClick}>
-//         {this.state.text}
-//       </button>
-//     )
-//   }
-// }
-
-// // class App extends React.Component {
-// //   constructor(props) {
-// //     super(props);
-// //     this.state = {
-// //         isActive: false,
-// //         activeCircle: "0",
-// //     }
-// // }
-  
-// //   handleClick = (id)=> {
-// //     // const isMatch = id === this.state.activeCircle;
-// //     const currentId = (id === this.state.activeCircle) ? "0" : id;
-// //     this.setState({
-// //         isActive: !this.state.isActive,
-// //         activeCircle: currentId,
-// //     })
-// // }
-
-// //   render() {
-// //     return (
-// //       <div className="App">
-// //         <h1>Traffic Light</h1>
-// //         <section className="traffic-container">
-// //           <Circle  color="red" click={this.handleClick} id="1" active={this.state.activeCircle} />
-// //           <Circle  color="yellow" click={this.handleClick} id="2" active={this.state.activeCircle}/>
-// //           <Circle  color="green" click={this.handleClick} id="3" active={this.state.activeCircle}/>
-// //           <Circle  color="blue" click={this.handleClick} id="4" active={this.state.activeCircle}/>
-// //         </section>
-// //       </div>
-// //     );
-// //   }
-
-// // }
-
-// function App () {
-//   const [activeCircle, setActiveCircle] = useState("0");
-
-//   const handleClick = (id) => {
-//     const currentId = (id === activeCircle) ? "0" : id;
-//     setActiveCircle(currentId);
-//   }
-
-//   return(
-//     <div className="App">
-//       <h1>Traffic Light</h1>
-//       <section className="traffic-container">
-//         <Circle color="red" id="1" click={handleClick} active={activeCircle} />
-//         <Circle color="yellow" id="2" click={handleClick} active={activeCircle} />
-//         <Circle color="green" id="3" click={handleClick} active={activeCircle} />
-//       </section>
-//     </div>
-//   )
-// }
 
 export default App;
