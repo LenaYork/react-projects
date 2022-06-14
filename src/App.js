@@ -25,22 +25,25 @@ function App () {
 
     const [ circleArr, setCircleArr ] = useState([]);
     const [ counter, setCounter ] = useState(0);
- 
+    const [ color, setColor ] = useState("#008000");
+    const [ userText,  setUserText ] = useState("Начальный текст");
+    const [ activeIDArr, setActiveIDArr ] = useState([]);
+
     const addCircle = () => {
         console.log("тыц");
         if (circleArr.length > 0 ) {
             let newArr = [...circleArr];
             newArr.push({
-                bgColor : "#004500",
-                innerText : "новый!",
+                bgColor : color,
+                innerText : userText,
                 id : circleArr[circleArr.length-1].id+1
             });
             setCircleArr(newArr);
         } else {
             console.log("2");
             setCircleArr([{
-                bgColor : "#004500",
-                innerText : "новый!",
+                bgColor : color,
+                innerText : userText,
                 id : 1
             }]);
         }
@@ -63,9 +66,34 @@ function App () {
         setCircleArr([]);
     }
 
+    const colorBlur = (event) => {
+        setColor(event.target.value);
+    }
+    
+    const saveText = (event) => {
+        setUserText(event.target.value);
+        console.log(userText);
+    }
+
+    const circleClick = (id) => {
+        let newArr = [...activeIDArr];
+        if (activeIDArr.includes(id)) {
+            console.log("ыыыыыыыыыыыыыыыыыыыыы");
+            newArr = newArr.filter(elem => elem !== id);
+        } else {
+            newArr.push(id); 
+        }
+        console.log(newArr)
+        setActiveIDArr(newArr);
+    }
+
     return(
         <div className='app'>
             <h1>Рисуем кружочки по тыку</h1>
+            <label htmlFor="colorPicker">Выберите цвет:</label>
+            <input type="color" id="colorPicker" onBlur={colorBlur}></input>
+            <label htmlFor="userText">Напишите текст для кружочка</label>
+            <input type="text" id="userText" onBlur={saveText}></input>
             <div className="buttons-container">
                 <Button innerText="Добавить" onClick={addCircle}/>
                 <Button innerText="Удалить" onClick={deleteCircle}/>
@@ -73,26 +101,18 @@ function App () {
             </div>
             {
                 circleArr.map(elem => {
+                    const activeClass = activeIDArr.includes(elem.id) ? "activeCircle" : "";
                     return <Circle 
                         bgColor={elem.bgColor}
                         innerText={elem.innerText}
+                        isActive={activeClass}
                         key={elem.id}
+                        onClick={() => circleClick(elem.id)}
                     />
                 })
         
             }
-            {/* <Circle 
-                bgColor="#008000"
-                innerText="Йа кружок!"
-            />
-            <Circle 
-                bgColor="#008000"
-                innerText="И йа кружок!"
-            />
-            <Circle 
-                bgColor="#008000"
-                innerText="И я!"
-            /> */}
+            
             
         </div>
     
