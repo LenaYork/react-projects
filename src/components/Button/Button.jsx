@@ -1,14 +1,18 @@
-import React from "react";
 import "./Button.css";
 
 export const Button = (props) => {
 
-    const {innerText, onClick} = props;
+    const {innerText, onClick, onKeyDown, className, id, activeControl} = props;
+
+    const isActiveCOntrol = id === activeControl ? "active-control-button" : "";
 
     return(
         <div 
-            className="button"
-            onClick={onClick} 
+            id={id}
+            className={`button ${className} ${isActiveCOntrol}`}
+            onClick={() => onClick(id)}
+            // onKeyDown={onKeyDown}
+            onKeyPress={onKeyDown}
         > 
             {innerText}
         </div>
