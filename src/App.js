@@ -1,42 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Input } from './components/Input/Input';
 import { Button } from './components/Button/Button';
 import { Todo } from './components/Todo/Todo';
+import { Edit } from './components/Edit/Edit';
 
 function App () {
 
     const [ inputText, setInputText ] = useState("");
-    const [ todoArr, setTodoArr ] = useState([]);
-    const [ activeControl, setActiveControl ] = useState("");
-    const [ lengthTitle, setLengthTitle ] = useState("total");
-    const [ displayedArr, setDisplayedArr ] = useState(todoArr);
-    // const [ selectedTodoArr, setSelectedTodoArr ] = useState([]);
-    const [list, setList ] = useState([]);
-    const [ listLength, setListLength ] = useState(0);
+    const [ todoArr, setTodoArr ] = useState(JSON.parse(localStorage.getItem("userList")) ?? []);
+    const [ activeControl, setActiveControl ] = useState("all");
+    const [ lengthTitle, setLengthTitle ] = useState("all");
+    const [ editId, setEditId ] = useState("");
+
+    useEffect(() => {
+        document.addEventListener('keydown', addKeyDown)
+        // return document.removeEventListener('keydown', addKeyDown)
+    }, [])
+
+    const addKeyDown = (event) => {
+        console.log("onKeyDown!@@@@@@@@@@@@@", event.keyCode);
+        if (event.keyCode === 13) {
+            addItem(document.querySelector("#input").value);
+        }
+    }
 
     const inputOnChange = (event) => {
+        console.log("текущий инпут", inputText)
         setInputText(event.target.value);
     }
 
-    const addButtonClick = () => {
-        if (inputText) {
-            setInputText("");
+    const addItem = (text) => {
+        console.log("input text in click", text)
+        if (text) {
+            // setInputText("");
             let newArr = [...todoArr];
             newArr.push({
-                "text" : inputText,
+                "text" : text,
                 "id" : todoArr.length ? todoArr[todoArr.length-1].id + 1 :  1,
                 "isDone" : false
             })
             setTodoArr(newArr);
         } else alert("Todo item cannot be empty");
-        
+        setInputText("");
     }
 
     const onRadioClick = (activeId) => {
-        console.log("radio was clicked");
         let newArr = [...todoArr];
-        // newArr.push(...todoArr.filter(elem => elem.id === activeId));
         newArr = newArr.map(elem => {
             if (elem.id === activeId) {
                 return {
@@ -47,31 +57,12 @@ function App () {
             } else return elem;
         })
         setTodoArr(newArr);
-        console.log(newArr);
     }
 
     const onCrossClick = (clickedId) => {
         let newArr = [...todoArr];
         newArr = newArr.filter(elem => elem.id !== clickedId)
         setTodoArr(newArr);
-    }
-
-    // const isActiveTodo = (id) => {
-    //     let isActive = false;
-    //     selectedTodoArr.forEach(elem => {
-    //         if (elem.id === id) {
-    //             isActive = true;
-    //         }
-    //     })
-    //     console.log(isActive)
-    //     return isActive;
-    // }
-
-    const addKeyDown = (event) => {
-        console.log("onKeyDown", event.target);
-        if (event.keyCode === 13) {
-            addButtonClick();
-        }
     }
 
     const clearButton = () => {
@@ -84,66 +75,93 @@ function App () {
         
     }
 
-    const activeButtonHandler = (id) => {
-        let newArr;
-        console.log(id)
-        setActiveControl(id);        
-        setLengthTitle(id)
-        sortArr();
-    }
+    useEffect(() => {
+        document.querySelector(".total-number").innerHTML = countLength(todoArr, activeControl);
+    }, [todoArr, activeControl ])
 
-    const sortArr = () => {
-        // let list = [];
-        let newList = [];
+    const countLength = (initialArr, activeButton) => {
+        let num = 0;
         switch(true) {
-            case activeControl === "all": 
-                newList = [...todoArr]
+            case activeButton === "all": 
+                num = initialArr.length;
                 break;
 
-            case activeControl === "done": 
-                newList = [...todoArr.filter(elem => elem.isDone )]
+            case activeButton === "done": 
+                num = initialArr.filter(elem => elem.isDone).length;
                 break;
 
-            case activeControl === "pending": 
-                newList = [...todoArr.filter(elem => !elem.isDone )]
+            case activeButton === "pending": 
+                num = initialArr.filter(elem => !elem.isDone ).length;
                 break;
 
             default:
-                newList = [...todoArr];
+                num = initialArr.length;
                 break;
         }
+        return num;
+    }
 
-        setList(newList);
-        setListLength(list.length)
+    const activeButtonHandler = (id) => {
+        setActiveControl(id);        
+        setLengthTitle(id) //тип массива для вывода слова на экран
+
+    }
+
+    const doubleClickHandler = (id) => {
+        setEditId(id);
+    }
+
+    const onSaveClick = (text) => {
+        let newArr = [...todoArr];
+        newArr = newArr.map(elem => {
+            if (elem.id === editId) {
+                let newElem = {...elem}
+                newElem.text = text
+                return newElem;
+            } else return elem;
+        })
+        setTodoArr(newArr);
+        setEditId("");
+    }
+
+    const onCancelClick = () => {
+        setEditId("");
     }
 
     const renderList = () => {
-        // let list = [];
-        // switch(true) {
-        //     case activeControl === "all": 
-        //         list = [...todoArr]
-        //         // setListLength(list.length)
-        //         console.log("list.length", list.length)
-        //         break;
+        let list = [];
+        switch(true) {
+            case activeControl === "all": 
+                list = [...todoArr]
+                break;
 
-        //     case activeControl === "done": 
-        //         list = [...todoArr.filter(elem => elem.isDone )]
-        //         // setListLength(list.length)
-        //         break;
+            case activeControl === "done": 
+                list = [...todoArr.filter(elem => elem.isDone )]
+                break;
 
-        //     case activeControl === "pending": 
-        //         list = [...todoArr.filter(elem => !elem.isDone )]
-        //         // setListLength(list.length)
-        //         break;
+            case activeControl === "pending": 
+                list = [...todoArr.filter(elem => !elem.isDone )]
+                break;
 
-        //     default:
-        //         list = [...todoArr];
-        //         break;
-        // }
+            default:
+                list = [...todoArr];
+                break;
+        }
+
+        localStorage.setItem("userList", JSON.stringify(list));
+        
         return(
             <div className="items-area">
                     {list.map(elem  => {
                         return (
+                            elem.id === editId ? 
+                            <Edit 
+                                key={elem.id}
+                                onSaveClick={onSaveClick}
+                                onCancelClick={onCancelClick}
+                                innerText={elem.text}
+                            />
+                            :
                             <Todo 
                                 isActiveTodo={elem.isDone}
                                 onRadioClick={onRadioClick}
@@ -152,7 +170,8 @@ function App () {
                                 innerText={elem.text}
                                 id={elem.id}
                                 key={elem.id}
-                            />
+                                onDoubleClick={() => {doubleClickHandler(elem.id)}}
+                            /> 
                         )
                     })}
             </div>
@@ -171,15 +190,16 @@ function App () {
                     <Button 
                         innerText="add"
                         className="add-button"
-                        onClick={addButtonClick}
-                        onKeyDown={addKeyDown}
+                        onClick={() => addItem(inputText)}
+                        // tabIndex="0"
+                        // onKeyDown={addKeyDown}
                     />
                 </div>
                 <div className="results-area">
                     <div className="buttons-container">
                         <div className="total-number-container">
                             <div>{lengthTitle}</div>
-                            <div className="total-number">{listLength}</div>
+                            <div className="total-number">0</div>
                         </div>
                         <Button 
                             innerText="all"

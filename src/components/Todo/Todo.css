@@ -1,4 +1,5 @@
 .todo {
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -6,7 +7,7 @@
 }
 
 .delete-todo-box {
-    border: 1px solid black;
+    border: 1px solid red;
     width: 25px;
     height: 25px;
     font-weight: bold;
@@ -15,6 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 5px;
 }
 
 .delete-todo-box:hover {
@@ -34,6 +36,12 @@
 }
 
 .active-todo {
+    height: 70px;
     border-radius: 15px;
     background-color: aqua;
+}
+
+.todo-checkbox {
+    width: 25px;
+    height: 25px;
 }

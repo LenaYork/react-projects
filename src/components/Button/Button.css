@@ -1,7 +1,5 @@
 .button {
     border-radius: 15px;
-    /* width: 120px; */
-    /* padding: 2px 20px; */
     box-sizing: border-box;
     font-weight: bold;
     color:#534e48;
@@ -13,17 +11,6 @@
 
 .button:active {
     outline: 1px solid #042728;
-}
-
-.add-button {
-    height: 30px;
-    padding: 2px 20px;
-    color:#534e48;
-    background-color: aquamarine;
-}
-
-.add-button:hover {
-    background-color: aqua;
 }
 
 .control-button {
@@ -49,14 +36,33 @@
 }
 
 .active-control-button {
-    background-color: yellow;
+    background-color: #eaaa09;
 }
 
 .active-control-button:hover {
-    background-color: yellow;
+    background-color: #eaaa09;
+    cursor: auto;
 }
 
+.active-control-button:active {
+    cursor: auto;
+    background-color: #eaaa09;
+    border: none;
+    outline: none;
+}
 
+.add-button {
+    height: 30px;
+    padding: 2px 20px;
+    color:#344244;
+    background-color: aquamarine;
+}
 
+.add-button:hover {
+    background-color: aqua;
+    cursor: pointer;
+}
 
-
+.add-button:active {
+    outline: 2px solid rgb(2, 197, 197);
+}

@@ -2,17 +2,17 @@ import "./Button.css";
 
 export const Button = (props) => {
 
-    const {innerText, onClick, onKeyDown, className, id, activeControl} = props;
+    const {innerText, onClick, className, id, activeControl} = props;
 
-    const isActiveCOntrol = id === activeControl ? "active-control-button" : "";
+    const isActiveControl = id === activeControl ? "active-control-button" : "";
 
     return(
         <div 
             id={id}
-            className={`button ${className} ${isActiveCOntrol}`}
+            className={`button ${className} ${isActiveControl}`}
             onClick={() => onClick(id)}
             // onKeyDown={onKeyDown}
-            onKeyPress={onKeyDown}
+            // onKeyPress={onKeyDown}
         > 
             {innerText}
         </div>
