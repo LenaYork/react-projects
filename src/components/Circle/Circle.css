@@ -1,0 +1,27 @@
+.circle {
+    width: 100px;
+    height: 100px;
+    border: 1px solid grey;
+    border-radius: 50%;
+}
+
+.circle:hover {
+    cursor: pointer;
+    outline: 3px solid aquamarine;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.notActiveCircle {
+    background-color: silver;
+}
