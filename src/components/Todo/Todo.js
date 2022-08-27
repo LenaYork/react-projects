@@ -14,8 +14,18 @@ export const Todo = (props) => {
                 onChange={() => onRadioClick(id)}
                 className="todo-checkbox"
                 />
-            <p className="todo-text" onDoubleClick={onDoubleClick}>{innerText}</p>
-            <div className="delete-todo-box" onClick={() => onCrossClick(id)}>X</div>
+            <p 
+                className="todo-text" 
+                onDoubleClick={onDoubleClick}
+                >
+                    {innerText}
+            </p>
+            <div 
+                className="delete-todo-box" 
+                onClick={() => onCrossClick(id)}
+                >
+                    X
+            </div>
         </div>
     )
 }

@@ -11,8 +11,6 @@ export const Button = (props) => {
             id={id}
             className={`button ${className} ${isActiveControl}`}
             onClick={() => onClick(id)}
-            // onKeyDown={onKeyDown}
-            // onKeyPress={onKeyDown}
         > 
             {innerText}
         </div>

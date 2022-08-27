@@ -13,27 +13,12 @@ function App () {
     const [ lengthTitle, setLengthTitle ] = useState("all");
     const [ editId, setEditId ] = useState("");
 
-    useEffect(() => {
-        document.addEventListener('keydown', addKeyDown)
-        // return document.removeEventListener('keydown', addKeyDown)
-    }, [])
-
-    const addKeyDown = (event) => {
-        console.log("onKeyDown!@@@@@@@@@@@@@", event.keyCode);
-        if (event.keyCode === 13) {
-            addItem(document.querySelector("#input").value);
-        }
-    }
-
     const inputOnChange = (event) => {
-        console.log("текущий инпут", inputText)
         setInputText(event.target.value);
     }
 
     const addItem = (text) => {
-        console.log("input text in click", text)
         if (text) {
-            // setInputText("");
             let newArr = [...todoArr];
             newArr.push({
                 "text" : text,
@@ -103,8 +88,7 @@ function App () {
 
     const activeButtonHandler = (id) => {
         setActiveControl(id);        
-        setLengthTitle(id) //тип массива для вывода слова на экран
-
+        setLengthTitle(id) 
     }
 
     const doubleClickHandler = (id) => {
@@ -165,7 +149,6 @@ function App () {
                             <Todo 
                                 isActiveTodo={elem.isDone}
                                 onRadioClick={onRadioClick}
-                                // onCrossClick={() => onCrossClick(elem.id)}
                                 onCrossClick={onCrossClick}
                                 innerText={elem.text}
                                 id={elem.id}
@@ -191,8 +174,6 @@ function App () {
                         innerText="add"
                         className="add-button"
                         onClick={() => addItem(inputText)}
-                        // tabIndex="0"
-                        // onKeyDown={addKeyDown}
                     />
                 </div>
                 <div className="results-area">
