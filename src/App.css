@@ -16,6 +16,7 @@
     border-radius: 15px;
     width: 800px;
     padding: 10px;
+    box-shadow: 15px 15px 10px aquamarine;
 }
 
 .input-area {
