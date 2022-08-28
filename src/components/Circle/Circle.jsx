@@ -9,7 +9,6 @@ export function Circle({color, onClick, id, activeCircle}) {
             className={`circle ${currentClass}`}
             onClick={onClick}
             id={id}
-
         >
 
         </div>
