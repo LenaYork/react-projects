@@ -1,16 +1,17 @@
 import "./Circle.css";
 
-export function Circle({color, onClick, id, activeCircle}) {
+export function Circle({color, id, activeCircle, timeLeft}) {
 
-    const currentClass = activeCircle === id ? color : "notActiveCircle";
+    const isActive = activeCircle === id;
+
+    const currentClass = isActive ? color : "notActiveCircle";
     
     return(
         <div 
             className={`circle ${currentClass}`}
-            onClick={onClick}
             id={id}
         >
-
+            <span>{isActive && timeLeft}</span>
         </div>
     )
 }
