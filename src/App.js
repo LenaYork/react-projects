@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Input } from './components/Input/Input';
 import { Button } from './components/Button/Button';
+import { Footer } from './components/Footer/Footer';
 
 function App () {
 
@@ -11,11 +12,11 @@ function App () {
         
     return(
         <div className='app'>
-            <h1 className="app-title">TODO LIST</h1>
+            <h1 className="app-title">Book Store</h1>
             <div className="controls">
             
             </div>
-            
+            <Footer />
         </div>
     )
 }
