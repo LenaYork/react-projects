@@ -6,8 +6,8 @@
     color: #87877f;
 }
 
-.app-title {
-    text-align: center;
+a {
+    text-decoration: none;
 }
 
 .controls {
@@ -16,8 +16,10 @@
     border: 2px solid aquamarine;
     border-radius: 15px;
     width: 90%;
+    height: 200px;
     padding: 10px;
-    box-shadow: 15px 15px 10px aquamarine;
+    margin: 30px;
+    /* box-shadow: 15px 15px 10px aquamarine; */
 }
 
 p {
