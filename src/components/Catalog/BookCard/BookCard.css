@@ -1,0 +1,24 @@
+.card {
+    height: 500px;
+    width: 300px;
+    outline: 3px solid aquamarine;
+    border-radius: 15px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.book-image {
+    /* width: 250px; */
+    height: 350px;
+}
+
+.card-title {
+    margin: 5px 0;
+}
+
+.writer {
+    margin-bottom: 15px;
+}

@@ -19,12 +19,12 @@ a {
     border-radius: 15px;
     width: 98vw;
     box-sizing: border-box;
-    height: 200px;
+    /* height: 200px; */
     padding: 10px;
     margin: 30px;
     box-shadow: 15px 15px 10px aquamarine;
 }
 
-p {
+p, h1, h2, h3 {
     margin: 0;
 }
