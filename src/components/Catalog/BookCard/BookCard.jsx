@@ -1,7 +1,7 @@
 import "./BookCard.css";
 import React, { useState } from 'react';
 
-export const BookCard = ({ title, writer, image, year, genres, id, price, addButtonHandler, isChosen }) => {
+export const BookCard = ({ title, writer, image, year, genres, id, price, buttonHandler, isChosen }) => {
 
     const addButtonClass = isChosen ? "add-button added-button" : "add-button";
     const addButtonText = isChosen ? "Remove" : "Add to Cart"
@@ -14,7 +14,7 @@ export const BookCard = ({ title, writer, image, year, genres, id, price, addBut
             <p className="year">{year}</p>
             <p className="genres">{genres.join(", ")}</p>
             <p className="price">$ {price}</p>
-            <button className={addButtonClass} onClick={() => addButtonHandler(id)}>
+            <button className={addButtonClass} onClick={() => buttonHandler(id, true)}>
                 {addButtonText}
             </button>
         </div>

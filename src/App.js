@@ -15,47 +15,46 @@ function App () {
     const [ cartBooks, setCartBooks ] = useState([]);
     const [ cartSum, setCartSum ] = useState(0);
 
-
-    useEffect(() => {
-        setCartBooks(books.filter(book => book.isChosen));
-    }, [books])
-
-    useEffect(() => {
+    const calculateSum = (booksList) => {
         const prices = [];
-        cartBooks.forEach( elem => prices.push(elem.price));
+        const tempCartBooks = booksList.filter(book => book.isChosen);
+        tempCartBooks.forEach( elem => prices.push(elem.price));
         console.log("prices", prices);
         const sum = prices ? prices.reduce( (a,b) => a+b, 0) : 0;
         setCartSum(sum);
         console.log("sum", sum);
-    }, [cartBooks]) 
+    }
 
-    const addButtonHandler = (id) => {
+    const buttonHandler = (id, isToggling) => {
         let newBooks = [...books];
         newBooks = newBooks.map(book =>
             {
                 if (book.id === id) {
                     let newBook = {...book};
-                    newBook.isChosen = !newBook.isChosen;
+                    newBook.isChosen = isToggling ? !newBook.isChosen : false;
                     return newBook;
                 } else return book;
             });
         setBooks(newBooks);
-        // console.log("стейт", books);
+        setCartBooks(newBooks.filter(book => book.isChosen));
+        calculateSum(newBooks);
     }
 
-    const deleteCartItemHandler = (id) => {
-        let newBooks = [...books];
-        newBooks = newBooks.map( book => 
-            {
-                if (book.id === id) {
-                    let newBook = {...book};
-                    newBook.isChosen = false;
-                    return newBook;
-                } else return book;
-            })
-        setBooks(newBooks);
-        console.log("стейт", books);
-    }
+    // const deleteCartItemHandler = (id) => {
+    //     let newBooks = [...books];
+    //     newBooks = newBooks.map( book => 
+    //         {
+    //             if (book.id === id) {
+    //                 let newBook = {...book};
+    //                 newBook.isChosen = false;
+    //                 return newBook;
+    //             } else return book;
+    //         })
+    //     setBooks(newBooks);
+    //     setCartBooks(newBooks.filter(book => book.isChosen));
+    //     calculateSum(newBooks);
+    //     console.log("стейт", books);
+    // }
         
     return(
         <div className='app'>
@@ -69,8 +68,8 @@ function App () {
 
             <div className="main">
                 <Routes>
-                    <Route path="/" element={<Catalog books={books} addButtonHandler={addButtonHandler}/>} />
-                    <Route path="/cart" element={<Cart cartBooks={cartBooks} cartSum={cartSum} deleteCartItemHandler={deleteCartItemHandler}/>} />
+                    <Route path="/" element={<Catalog books={books} buttonHandler={buttonHandler}/>} />
+                    <Route path="/cart" element={<Cart cartBooks={cartBooks} cartSum={cartSum} buttonHandler={buttonHandler}/>} />
                 </Routes>
             </div>
             <Footer />

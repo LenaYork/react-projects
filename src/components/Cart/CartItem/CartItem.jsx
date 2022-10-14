@@ -1,6 +1,6 @@
 import "./CartItem.css";
 
-export const CartItem = ({title, writer, image, price, id, deleteCartItemHandler}) => {
+export const CartItem = ({title, writer, image, price, id, buttonHandler}) => {
 
     return(
             <div className="cart-item">
@@ -10,7 +10,7 @@ export const CartItem = ({title, writer, image, price, id, deleteCartItemHandler
                     <p className="cart-writer">{writer}</p>
                 </div>
                 <p className="cart-price">$ {price}</p>
-                <p className="delete-item" onClick={() => deleteCartItemHandler(id)}>X</p>
+                <p className="delete-item" onClick={() => buttonHandler(id, false)}>X</p>
             </div>
         )
 }

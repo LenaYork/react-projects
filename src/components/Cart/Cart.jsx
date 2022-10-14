@@ -1,7 +1,7 @@
 import "./Cart.css";
 import { CartItem } from "./CartItem/CartItem";
 
-export const Cart = ({ cartBooks, cartSum, deleteCartItemHandler }) => {
+export const Cart = ({ cartBooks, cartSum, buttonHandler }) => {
 
     const cartWelcome = cartBooks.length 
         ? "Books you are about to order:" 
@@ -19,7 +19,7 @@ export const Cart = ({ cartBooks, cartSum, deleteCartItemHandler }) => {
                         image={book.image}
                         price={book.price}
                         id={book.id}
-                        deleteCartItemHandler={deleteCartItemHandler}
+                        buttonHandler={buttonHandler}
                     />
                 )
             })

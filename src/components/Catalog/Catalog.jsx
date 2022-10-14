@@ -61,7 +61,7 @@ import { BookCard} from "./BookCard/BookCard";
 //     },
 // ]
 
-export const Catalog = ({books, addButtonHandler}) => {
+export const Catalog = ({books, buttonHandler}) => {
     return(
         <div className="catalog">
             {books.map(
@@ -76,7 +76,7 @@ export const Catalog = ({books, addButtonHandler}) => {
                             genres={book.genre}
                             id={book.id}
                             price={book.price}
-                            addButtonHandler={addButtonHandler}
+                            buttonHandler={buttonHandler}
                             isChosen={book.isChosen}
                         />
                     )
