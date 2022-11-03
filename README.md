@@ -1,12 +1,10 @@
 # Getting Started with Create React App
-To-do-list application which provides:
+A book store where a user can:
 
-- adding new plans to the list
-- deleting completed plans
-- marking plans as completed
-- editing existing plans (use double click)
+- look through the book catalog
+- filter books by writer/year/genres
+- sort displayed books by price
+- add books to the cart
+- check the cart and see the total price
 
-The buttons DONE, PEDNING and ALL make it possible to choose what kind of plans to display.
-Each option shows the amount of plans.
-
-Local storage is used for data storage so that a user can see their plans after page reload.
+Modal log in window collects inputs visible in console as an object.
