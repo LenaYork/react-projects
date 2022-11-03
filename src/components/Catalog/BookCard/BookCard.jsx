@@ -1,5 +1,5 @@
 import "./BookCard.css";
-import React, { useState } from 'react';
+import React from 'react';
 
 export const BookCard = ({ title, writer, image, year, genres, id, price, buttonHandler, isChosen }) => {
 

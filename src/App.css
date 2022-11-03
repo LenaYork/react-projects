@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    /* color: #534e48; */
     height: 99vh;
     color: #87877f;
 }
@@ -19,8 +18,6 @@ a {
     border-radius: 15px;
     width: 98vw;
     box-sizing: border-box;
-    /* height: 200px; */
-    /* min-height: 200px; */
     padding: 10px;
     margin: 30px;
     box-shadow: 15px 15px 10px aquamarine;

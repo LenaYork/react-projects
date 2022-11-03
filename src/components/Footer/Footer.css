@@ -4,11 +4,9 @@
     border: 2px solid aquamarine;
     border-radius: 15px;
     box-shadow: 15px 15px 10px aquamarine;
-    /* box-shadow: 15px -15px 10px aquamarine; */
 }
 
 .footer-social {
-    /* max-width: 400px; */
     display: flex;
     flex-direction: column;
     align-items: center;
