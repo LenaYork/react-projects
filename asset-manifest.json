@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/namerepository/reactprojects/storenor/static/css/main.005f2539.css",
-    "main.js": "/namerepository/reactprojects/storenor/static/js/main.db9d1348.js",
-    "static/js/787.b3ae34ce.chunk.js": "/namerepository/reactprojects/storenor/static/js/787.b3ae34ce.chunk.js",
-    "index.html": "/namerepository/reactprojects/storenor/index.html",
-    "main.005f2539.css.map": "/namerepository/reactprojects/storenor/static/css/main.005f2539.css.map",
-    "main.db9d1348.js.map": "/namerepository/reactprojects/storenor/static/js/main.db9d1348.js.map",
-    "787.b3ae34ce.chunk.js.map": "/namerepository/reactprojects/storenor/static/js/787.b3ae34ce.chunk.js.map"
+    "main.css": "/reactprojects/storenor/static/css/main.005f2539.css",
+    "main.js": "/reactprojects/storenor/static/js/main.9c1d6a9d.js",
+    "static/js/787.b3ae34ce.chunk.js": "/reactprojects/storenor/static/js/787.b3ae34ce.chunk.js",
+    "index.html": "/reactprojects/storenor/index.html",
+    "main.005f2539.css.map": "/reactprojects/storenor/static/css/main.005f2539.css.map",
+    "main.9c1d6a9d.js.map": "/reactprojects/storenor/static/js/main.9c1d6a9d.js.map",
+    "787.b3ae34ce.chunk.js.map": "/reactprojects/storenor/static/js/787.b3ae34ce.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.005f2539.css",
-    "static/js/main.db9d1348.js"
+    "static/js/main.9c1d6a9d.js"
   ]
 }
